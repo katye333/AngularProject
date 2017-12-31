@@ -1,6 +1,6 @@
 export class Ingredient {
     // public name: string;
-    // public amount: string;
+    // public amount: number;
 
     // constructor(name: string, amount: string) {
     //     this.name = name;
@@ -8,5 +8,5 @@ export class Ingredient {
     // }
 
     // Typescript shortcut for typical class declarations
-    constructor(public name: string, public amount: string) { }
+    constructor(public name: string, public amount: number) { }
 }

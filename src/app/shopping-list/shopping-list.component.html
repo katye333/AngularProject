@@ -7,7 +7,11 @@
             <!-- Each anchor tag is a single item on our shopping list -->
             <a href="#"
                class="list-group-item"
-               style="cursor: pointer;"></a>
+               style="cursor: pointer;"
+               *ngFor="let ingredient of ingredients">
+                <!-- String interpolation used to output the name (string) and amount (number) -->
+                {{ ingredient.name }} ({{ ingredient.amount }})
+            </a>
         </ul>
     </div>
 </div>

@@ -6,11 +6,18 @@
 <hr />
 <div class="row">
     <div class="col-xs-12">
-        <!--
-                [recipe] in the square brackets refers to the
-                    @Input() recipe: Recipe (recipe-item.component.ts)
-        -->
+        <!-- [recipe] in the square brackets refers to the
+             @Input() recipe: Recipe (recipe-item.component.ts) -->
+
+        <!-- The event listening for the child to be selected already contains 
+             all the information about that element from this loop -->
+
+        <!-- A second event needs to be emitted from this component to get to
+             the parent containing the recipe-details component  -->
+
+        <!-- The parameter being passed to onRecipeSelected() lets us know which recipe was chosen -->
         <app-recipe-item *ngFor="let recipeEl of recipes"
-                         [recipe]="recipeEl"></app-recipe-item>
+            [recipe]="recipeEl"
+            (recipeSelected)="onRecipeSelected(recipeEl)"></app-recipe-item>
     </div>
 </div>

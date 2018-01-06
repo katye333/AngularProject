@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
     selector: 'app-shopping-edit',
@@ -7,17 +8,15 @@ import { Ingredient } from '../../shared/ingredient.model';
     styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
+    // Ingredient Model 
+    ingredients: Ingredient[];
 
     // ViewChild() approach is used so any shopping list
     // of this component will ALL have an onAddItem()
     @ViewChild('nameInput') nameInputRef: ElementRef;
     @ViewChild('amountInput') amountInputRef: ElementRef;
 
-    // Type definition is an object with the following properties: { name: string, amount: number }
-    // Ingredient object can be used in its place thou
-    @Output() ingredientAdded = new EventEmitter<Ingredient>();
-
-    constructor() { }
+    constructor(private slService: ShoppingListService) { }
     ngOnInit() { }
 
     // Emit an event that handles passing the data to the parent
@@ -29,7 +28,7 @@ export class ShoppingEditComponent implements OnInit {
         // Create an Ingredient object with the values of the input fields
         const newIngredient = new Ingredient(ingName, ingAmount);
 
-        this.ingredientAdded.emit(newIngredient);
+        this.slService.addIngredient(newIngredient);
     }
 
 }

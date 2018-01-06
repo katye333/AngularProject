@@ -7,7 +7,7 @@
              to $event because it is set when event is triggered-->
 
         <!-- Could have been moved into a method but it's a bit short for that -->
-        <app-recipe-list (recipeWasSelected)="selectedRecipe = $event"></app-recipe-list>
+        <app-recipe-list></app-recipe-list>
     </div>
 
     <!-- This is parent to child data binding (property binding) -->
@@ -15,8 +15,7 @@
 
         <!-- ngIf will be false until recipe is chosen -->
         <!-- The recipe-details component has property recipe that is being set with the selectedRecipe -->
-        <app-recipe-detail *ngIf="selectedRecipe; else infoText"
-            [recipe]="selectedRecipe"></app-recipe-detail>
+        <app-recipe-detail *ngIf="selectedRecipe; else infoText" [recipe]="selectedRecipe"></app-recipe-detail>
 
         <ng-template #infoText>
             <p>Please select a recipe!</p>

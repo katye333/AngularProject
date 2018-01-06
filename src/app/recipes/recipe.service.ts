@@ -1,8 +1,12 @@
+import { EventEmitter } from '@angular/core';
 import { Recipe } from './recipe.model';
 
 // the recipes are currently managed in the recipe-list component
 // and should be moved to here to be taken care of
 export class RecipeService {
+
+    // hold some recipe data
+    recipeSelected = new EventEmitter<Recipe>();
 
     // move the array of recipes from recipe-list to here
     // make it private so we can directly access this array from outside

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe.service';
 
 @Component({
     selector: 'app-recipe-item',
@@ -9,18 +10,17 @@ import { Recipe } from '../../recipe.model';
 export class RecipeItemComponent implements OnInit {
     // No value assigned to it because recipe is coming from outside data source
     // Data coming from parent component so we need @Input() decorator
-
     @Input() recipe: Recipe;
 
-    // No information is being passed to the parent component so the type is void
-    @Output() recipeSelected = new EventEmitter<void>();
-
-    constructor() { }
+    // inject the recipeService so we have access to everything in there
+    constructor(private recipeService: RecipeService) { }
     ngOnInit() { }
 
-    // This child component is being used from inside its parent component (recipe-list)
-    // meaning we do not need to send it any information about the child that triggered the event
+    // recipeSelected event emitter (recipe.service.ts)
+    // emit the recipe off this recipe item component because we selected this one and that's
+    // the data we want to pass
     onSelected() {
-        this.recipeSelected.emit();
+        // console.log(this.recipe);
+        this.recipeService.recipeSelected.emit(this.recipe);
     }
 }

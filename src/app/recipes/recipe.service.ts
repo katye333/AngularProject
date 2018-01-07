@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
 
 // the recipes are currently managed in the recipe-list component
 // and should be moved to here to be taken care of
@@ -10,9 +11,31 @@ export class RecipeService {
 
     // move the array of recipes from recipe-list to here
     // make it private so we can directly access this array from outside
+
+    // add array of ingredients to the recipe models
     private recipes: Recipe[] = [
-        new Recipe('Test Recipe', 'So good!', 'https://static.pexels.com/photos/257786/pexels-photo-257786.jpeg'),
-        new Recipe('Test Recipe 2', 'Still good', 'http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/1506120378/MR_0917170472.jpg?itok=KPTNrvis')
+        new Recipe(
+            'A Cheeseburger',
+            'Omg just look at that thing',
+            'https://www.restu.cz/ir/restaurant/f15/f15d493ba05c77bb95c268b80e97e785.jpg',
+            [
+                new Ingredient('Bun', 2),
+                new Ingredient('Hamburger Meat', 1),
+                new Ingredient('Lettuce', 4),
+                new Ingredient('Tomato', 3),
+                new Ingredient('Cheese', 2)
+            ]),
+        new Recipe(
+            'A hotdog',
+            'It feels like the fourth of july',
+            'https://cdn.patchcdn.com/users/102397/2013/07/T800x600/309baba6eae6ee9d40447cef8ff07b59.png',
+            [
+                new Ingredient('Bun', 1),
+                new Ingredient('Meat', 1),
+                new Ingredient('Onion', 4),
+                new Ingredient('Ketchup', 3),
+                new Ingredient('Mustard', 2)
+            ])
     ];
 
     // access from the outside is not really possible

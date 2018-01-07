@@ -17,10 +17,11 @@ export class ShoppingListComponent implements OnInit {
     constructor(private slService: ShoppingListService) { }
     ngOnInit() {
         this.ingredients = this.slService.getIngredients(); // Get a copy of this array from our service
-    }
 
-    onIngredientAdded(ingredient: Ingredient) {
-        this.ingredients.push(ingredient);
+        this.slService.ingredientsChanged.subscribe(
+            (ingredients: Ingredient[]) => {
+                this.ingredients = ingredients;
+            }
+        );
     }
-
 }

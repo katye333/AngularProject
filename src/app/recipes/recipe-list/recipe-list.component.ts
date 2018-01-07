@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
@@ -8,10 +8,6 @@ import { RecipeService } from '../recipe.service';
     styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-
-    // The information contained in recipeWasSelected will be needed in the recipe component
-    @Output() recipeWasSelected = new EventEmitter<Recipe>();
-
     recipes: Recipe[]; // set value of recipe array on ngOnInit
 
     // inject service 
@@ -19,10 +15,5 @@ export class RecipeListComponent implements OnInit {
     constructor(private recipeService: RecipeService) { }
     ngOnInit() {
         this.recipes = this.recipeService.getRecipes(); // Get a copy of this array from our service
-    }
-
-    // The recipes variable defined above is a Recipe object from the recipe.model
-    onRecipeSelected(recipe: Recipe) {
-        this.recipeWasSelected.emit(recipe);
     }
 }

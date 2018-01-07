@@ -25,4 +25,13 @@ export class ShoppingListService {
         // to fix problem caused by the copy of our ingredient array
         this.ingredientsChanged.emit(this.ingredients.slice());
     }
+
+    addIngredients(ingredients: Ingredient[]) {
+        // do not use a loop 
+        // we emit a lot of events so bad idea
+
+        // spread operator turns an array of elements into a list of elements
+        this.ingredients.push(...ingredients);
+        this.ingredientsChanged.emit(this.ingredients.slice());
+    }
 }

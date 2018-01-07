@@ -1,6 +1,10 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
+
+// inject a service into a service
+@Injectable()
 
 // the recipes are currently managed in the recipe-list component
 // and should be moved to here to be taken care of
@@ -38,6 +42,8 @@ export class RecipeService {
             ])
     ];
 
+    constructor(private slService: ShoppingListService) { }
+
     // access from the outside is not really possible
     // this method only returns a copy of our array
     getRecipes() {
@@ -46,5 +52,9 @@ export class RecipeService {
 
         // this returns a new array which is an exact copy of the old one
         return this.recipes.slice();
+    }
+
+    addIngredientsToShoppingList(ingredients: Ingredient[]) {
+        this.slService.addIngredients(ingredients);
     }
 }

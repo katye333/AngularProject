@@ -1,7 +1,6 @@
-<!-- Emit an event informing the parent component (recipe-list) that this recipe was selected -->
-<a href="#"
-    class="list-group-item clearfix"
-    (click)="onSelected()">
+<a style="cursor: pointer"
+   class="list-group-item clearfix"
+   (click)="onSelected()">
 
     <div class="pull-left">
         <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
@@ -9,8 +8,8 @@
     </div>
     <span class="pull-right">
         <img src="{{ recipe.imagePath }}"
-            alt="{{ recipe.name }}"
-            class="img-responsive"
-            style="max-height: 50px;" />
+             alt="{{ recipe.name }}"
+             class="img-responsive"
+             style="max-height: 50px;" />
     </span>
 </a>

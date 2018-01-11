@@ -1,4 +1,4 @@
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -17,7 +17,7 @@ export class RecipeDetailComponent implements OnInit {
     id: number;
 
     // use the route to get the recipe id
-    constructor(private recipeService: RecipeService, private route: ActivatedRoute) { }
+    constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router) { }
     ngOnInit() {
 
         // this gets the new id any time the route changes rather than only on init
@@ -34,5 +34,11 @@ export class RecipeDetailComponent implements OnInit {
     //   * get access to the recipe service then the recipe service accesses the shopping list service
     onAddToShoppingList() {
         this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+    }
+
+    // navigate to the relative link edit with information about our current route 
+
+    onEditRecipe() {
+        this.router.navigate(['edit'], { relativeTo: this.route });
     }
 }

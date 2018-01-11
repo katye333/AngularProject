@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -12,8 +13,13 @@ export class RecipeListComponent implements OnInit {
 
     // inject service 
     // shorthand: assign a property with the same name and angular handles it
-    constructor(private recipeService: RecipeService) { }
+    constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute) { }
     ngOnInit() {
         this.recipes = this.recipeService.getRecipes(); // Get a copy of this array from our service
+    }
+
+    // navigate to the relative link new with information about our current route 
+    onNewRecipe() {
+        this.router.navigate(['new'], { relativeTo: this.route });
     }
 }

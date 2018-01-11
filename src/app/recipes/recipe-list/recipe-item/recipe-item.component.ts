@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../../recipe.model';
-import { RecipeService } from '../../recipe.service';
 
 @Component({
     selector: 'app-recipe-item',
@@ -13,14 +12,5 @@ export class RecipeItemComponent implements OnInit {
     @Input() recipe: Recipe;
 
     // inject the recipeService so we have access to everything in there
-    constructor(private recipeService: RecipeService) { }
     ngOnInit() { }
-
-    // recipeSelected event emitter (recipe.service.ts)
-    // emit the recipe off this recipe item component because we selected this one and that's
-    // the data we want to pass
-    onSelected() {
-        // console.log(this.recipe);
-        this.recipeService.recipeSelected.emit(this.recipe);
-    }
 }

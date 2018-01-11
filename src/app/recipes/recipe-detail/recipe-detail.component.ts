@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../../shared/ingredient.model';
@@ -10,11 +11,23 @@ import { Ingredient } from '../../shared/ingredient.model';
 })
 
 export class RecipeDetailComponent implements OnInit {
-    // recipe is being passed to recipe-details from the recipe component (property binding)
-    @Input() recipe: Recipe;
 
-    constructor(private recipeService: RecipeService) { }
-    ngOnInit() { }
+    // use the routes defined on app-routing.module to get our recipes
+    recipe: Recipe;
+    id: number;
+
+    // use the route to get the recipe id
+    constructor(private recipeService: RecipeService, private route: ActivatedRoute) { }
+    ngOnInit() {
+
+        // this gets the new id any time the route changes rather than only on init
+        this.route.params.subscribe(
+            (params: Params) => {
+                this.id = +params['id']; // convert params['id'] to a number and save in property of class
+                this.recipe = this.recipeService.getRecipe(this.id);
+            }
+        );
+    }
 
     // we need to either:
     //   * get access to the shopping list service or 

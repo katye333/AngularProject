@@ -10,10 +10,7 @@ it will execute the onNavigate() function call -->
     <div class="row">
         <div class="col-md-12">
 
-            <!-- Only one of these components should be shown at at time -->
-            <!-- Use *ngIf directive to determine the visible component based on the value of loadedFeature -->
-            <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
-            <app-shopping-list *ngIf="loadedFeature !== 'recipe'"></app-shopping-list>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

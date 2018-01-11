@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
 @Component({
@@ -10,9 +9,6 @@ import { RecipeService } from './recipe.service';
 })
 export class RecipesComponent implements OnInit {
 
-    // Undefined until a recipe has been selected
-    selectedRecipe: Recipe;
-
     // inject service here to recipeService
     // the recipe service is provided on this component and all other 
     // components in the recipes folder all use the same instance
@@ -22,11 +18,5 @@ export class RecipesComponent implements OnInit {
     // about the event 
     constructor(private recipeService: RecipeService) { }
 
-    ngOnInit() {
-        this.recipeService.recipeSelected.subscribe(
-            (recipe: Recipe) => {
-                this.selectedRecipe = recipe;
-            }
-        );
-    }
+    ngOnInit() { }
 }

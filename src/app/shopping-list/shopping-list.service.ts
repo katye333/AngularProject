@@ -1,9 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 import { Ingredient } from '../shared/ingredient.model';
 
 // create the service
 export class ShoppingListService {
-    ingredientsChanged = new EventEmitter<Ingredient[]>(); // Pass an array of ingredients
+    ingredientsChanged = new Subject<Ingredient[]>(); // Pass an array of ingredients
 
     // Ingredient Model
     private ingredients: Ingredient[] = [
@@ -23,7 +23,7 @@ export class ShoppingListService {
         this.ingredients.push(ingredient);
 
         // to fix problem caused by the copy of our ingredient array
-        this.ingredientsChanged.emit(this.ingredients.slice());
+        this.ingredientsChanged.next(this.ingredients.slice());
     }
 
     addIngredients(ingredients: Ingredient[]) {
@@ -32,6 +32,6 @@ export class ShoppingListService {
 
         // spread operator turns an array of elements into a list of elements
         this.ingredients.push(...ingredients);
-        this.ingredientsChanged.emit(this.ingredients.slice());
+        this.ingredientsChanged.next(this.ingredients.slice());
     }
 }

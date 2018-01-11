@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
@@ -9,9 +9,6 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 // the recipes are currently managed in the recipe-list component
 // and should be moved to here to be taken care of
 export class RecipeService {
-
-    // hold some recipe data
-    recipeSelected = new EventEmitter<Recipe>();
 
     // move the array of recipes from recipe-list to here
     // make it private so we can directly access this array from outside

@@ -4,6 +4,7 @@ import { Ingredient } from '../shared/ingredient.model';
 // create the service
 export class ShoppingListService {
     ingredientsChanged = new Subject<Ingredient[]>(); // Pass an array of ingredients
+    startedEditing = new Subject<number>(); // listenes for the shopping list to get edited
 
     // Ingredient Model
     private ingredients: Ingredient[] = [

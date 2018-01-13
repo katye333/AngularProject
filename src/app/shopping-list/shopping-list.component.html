@@ -5,8 +5,7 @@
         <hr />
         <ul class="list-group">
             <!-- Each anchor tag is a single item on our shopping list -->
-            <a href="#"
-               class="list-group-item"
+            <a class="list-group-item"
                style="cursor: pointer;"
                *ngFor="let ingredient of ingredients; let i = index"
                (click)="onEditItem(i)">

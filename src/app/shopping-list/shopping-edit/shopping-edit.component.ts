@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { NgForm } from '@angular/forms';
@@ -11,10 +11,15 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
 
+    // update the form if in edit mode
+    // this gives us access to the form object
+    @ViewChild('listForm') slForm: NgForm;
+
     // store subscription in a variable so it can be destroyed later
     subscription: Subscription;
     editMode = false;
     editedItemIndex: number;
+    editedItem: Ingredient;
 
     constructor(private slService: ShoppingListService) { }
 
@@ -27,6 +32,14 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
             (index: number) => {
                 this.editedItemIndex = index;
                 this.editMode = true;
+                this.editedItem = this.slService.getIngredient(index); // retrieve item object by index
+
+                // the row of the item about to be edited will have its name
+                // and amount input elements populated with the previous values
+                this.slForm.setValue({
+                    name: this.editedItem.name,
+                    amount: this.editedItem.amount
+                });
             }
         );
     }

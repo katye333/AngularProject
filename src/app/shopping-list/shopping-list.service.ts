@@ -19,6 +19,11 @@ export class ShoppingListService {
         return this.ingredients.slice();
     }
 
+    // get the item about to be edited using index
+    getIngredient(index: number) {
+        return this.ingredients[index];
+    }
+
     // access my ingredients and push a new one on
     addIngredient(ingredient: Ingredient) {
         this.ingredients.push(ingredient);

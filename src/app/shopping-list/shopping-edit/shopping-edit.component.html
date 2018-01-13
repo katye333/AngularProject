@@ -3,8 +3,8 @@
 
         <!-- Add template form method on handling form submission -->
         <!-- Create a local reference on the form element to get access to the form created by Angular -->
-        <!-- Pass onAddItem() the local form reference -->
-        <form (ngSubmit)="onAddItem(listForm)"
+        <!-- Pass onSubmit() the local form reference -->
+        <form (ngSubmit)="onSubmit(listForm)"
               #listForm="ngForm">
             <div class="row">
                 <div class="col-sm-5 form-group">
@@ -42,10 +42,15 @@
                     <button class="btn btn-success"
                             type="submit"
                             [disabled]="!listForm.valid">{{ editMode ? 'Update' : 'Add' }}</button>
-                    <button class="btn btn-danger"
-                            type="button">Delete Item</button>
+
+                    <!-- Only show the delete button if an item is selected  -->
+                    <button *ngIf="this.editMode"
+                            class="btn btn-danger"
+                            type="button"
+                            (click)="onDelete()">Delete Item</button>
                     <button class="btn btn-primary"
-                            type="button">Clear</button>
+                            type="button"
+                            (click)="onClear()">Clear</button>
                 </div>
             </div>
         </form>

@@ -47,4 +47,11 @@ export class ShoppingListService {
         this.ingredients[index] = newIngredient;
         this.ingredientsChanged.next(this.ingredients.slice());
     }
+
+    // OMFG I WAS SO RIGHT
+    // Remove the offending ingredient and call ingredientsChanged
+    deleteIngredient(index: number) {
+        this.ingredients.splice(index, 1);
+        this.ingredientsChanged.next(this.ingredients.slice());
+    }
 }

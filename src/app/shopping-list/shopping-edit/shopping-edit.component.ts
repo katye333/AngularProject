@@ -50,7 +50,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
     // Pass the local form reference to this function 
     // Add the type of the form (NgForm)
-    onAddItem(form: NgForm) {
+    onSubmit(form: NgForm) {
         // Logging the output of form gives the entire NgForm object with 
         // the controls and their properties/value/events (for both form and controls)
         const value = form.value;
@@ -62,5 +62,22 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         else {
             this.slService.addIngredient(newIngredient);
         }
+
+        // reset form after add/updating and reset editMode
+        this.editMode = false;
+        form.reset();
+    }
+
+    onClear() {
+        // ViewChild (ie., slForm) is the html form 
+        // form (in above method) is the reference of our form object
+        this.slForm.reset();
+        this.editMode = false;
+    }
+
+    // after deleting an element, call onClear() button so no duplicate code
+    onDelete() {
+        this.slService.deleteIngredient(this.editedItemIndex);
+        this.onClear();
     }
 }

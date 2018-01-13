@@ -1,32 +1,41 @@
 <div class="row">
     <div class="col-xs-12">
-        <form>
+
+        <!-- Add template form method on handling form submission -->
+        <!-- Create a local reference on the form element to get access to the form created by Angular -->
+        <!-- Pass onAddItem() the local form reference -->
+        <form (ngSubmit)="onAddItem(listForm)"
+              #listForm="ngForm">
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
+
+                    <!-- Create template-driven form for shopping list
+                     Remove local references -->
                     <input type="text"
-                        id="name"
-                        class="form-control"
-                        #nameInput />
+                           id="name"
+                           class="form-control"
+                           name="name"
+                           ngModel />
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
                     <input type="number"
-                        id="amount"
-                        class="form-control"
-                        #amountInput />
+                           id="amount"
+                           class="form-control"
+                           name="amount"
+                           ngModel />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12">
                     <button class="btn btn-success"
-                        type="button"
-                        (click)="onAddItem()">Add</button>
+                            type="submit">Add</button>
                     <button class="btn btn-danger"
-                        type="button">Delete Item</button>
+                            type="button">Delete Item</button>
                     <button class="btn btn-primary"
-                        type="button">Clear</button>
+                            type="button">Clear</button>
                 </div>
             </div>
         </form>

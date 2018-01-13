@@ -17,10 +17,11 @@ export class ShoppingEditComponent implements OnInit {
 
     // Pass the local form reference to this function 
     // Add the type of the form (NgForm)
-    // 
     onAddItem(form: NgForm) {
-        console.log(form);
+        // Logging the output of form gives the entire NgForm object with 
+        // the controls and their properties/value/events (for both form and controls)
         const value = form.value;
+        console.log(value)
         const newIngredient = new Ingredient(value.name, value.amount);
 
         this.slService.addIngredient(newIngredient);

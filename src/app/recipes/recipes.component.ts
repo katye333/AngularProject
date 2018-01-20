@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from './recipe.service';
 
 @Component({
     selector: 'app-recipes',
     templateUrl: './recipes.component.html',
-    styleUrls: ['./recipes.component.css'],
-    providers: [RecipeService]
+    styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
 
@@ -16,7 +14,7 @@ export class RecipesComponent implements OnInit {
     // Otherwise the service where I emit the event would be a different
     // one than the one that listened to it so I would NEVER get informed
     // about the event 
-    constructor(private recipeService: RecipeService) { }
+    constructor() { }
 
     ngOnInit() { }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import { Subject } from 'rxjs/Subject';
 
 // inject a service into a service
 @Injectable()
@@ -9,6 +10,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 // the recipes are currently managed in the recipe-list component
 // and should be moved to here to be taken care of
 export class RecipeService {
+    recipeChanged = new Subject<Recipe[]>(); // Pass an array of recipes
 
     // move the array of recipes from recipe-list to here
     // make it private so we can directly access this array from outside
@@ -58,5 +60,17 @@ export class RecipeService {
 
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
+    }
+
+    // push new recipe onto recipes array defined at the top
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+        this.recipeChanged.next(this.recipes.slice());
+    }
+
+    // replace the recipe at the given index with the new one
+    updateRecipe(index: number, newRecipe: Recipe) {
+        this.recipes[index] = newRecipe;
+        this.recipeChanged.next(this.recipes.slice());
     }
 }

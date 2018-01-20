@@ -17,11 +17,20 @@ export class DataStorageService {
     }
 
     retrieveRecipes() {
-        return this.http.get('https://ng-recipe-book-d219c.firebaseio.com/data.json').subscribe(
+        return this.http.get('https://ng-recipe-book-d219c.firebaseio.com/data.json')
+            .map(
             (response: Response) => {
                 const recipes: Recipe[] = response.json();
+                for (const recipe of recipes) {
+                    if (!recipe['ingredients']) {
+                        recipe['ingredients'] = [];
+                    }
+                }
+                return recipes;
+            })
+            .subscribe(
+            (recipes: Recipe[]) => {
                 this.recipeService.setRecipes(recipes);
-            }
-        );
+            });
     }
 }

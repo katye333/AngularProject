@@ -39,14 +39,17 @@
                         <input type="text"
                                id="imagePath"
                                class="form-control"
-                               formControlName="imagePath">
+                               formControlName="imagePath"
+                               #imagePath>
+                        <!-- Add local reference so we can see the image preview -->
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12">
-                    <img src=""
+                    <!-- Use property binding to get the image local reference  -->
+                    <img [src]="imagePath.value"
                          class="img-responsive">
                 </div>
             </div>

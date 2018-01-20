@@ -19,9 +19,32 @@ export class RecipeEditComponent implements OnInit {
         this.route.params.subscribe(
             (params: Params) => {
                 this.id = +params['id'];
+
                 this.editMode = params['id'] != null; // if the id is null, then we are not in editMode
                 this.initForm(); // call method on page change 
             }
+        );
+    }
+
+    onSubmit() {
+        console.log(this.recipeForm);
+    }
+
+    // add a new control to the array of ingredient controls
+    onAddIngredient() {
+
+        // explicitly cast the new ingredient to use a FormArray
+        // set the default value to null (no default value)
+        (<FormArray>this.recipeForm.get('ingredients')).push(
+            new FormGroup({
+                'name': new FormControl(null, Validators.required),
+
+                // run amount through two validators to check required and that the input is a number
+                'amount': new FormControl(null, [
+                    Validators.required,
+                    Validators.pattern(/^[1-9]+[0-9]*$/)
+                ])
+            })
         );
     }
 

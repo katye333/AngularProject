@@ -43,6 +43,11 @@ export class RecipeService {
 
     constructor(private slService: ShoppingListService) { }
 
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipeChanged.next(this.recipes.slice());
+    }
+
     // access from the outside is not really possible
     // this method only returns a copy of our array
     getRecipes() {

@@ -9,6 +9,8 @@ import { DataStorageService } from '../shared/data-storage.service';
 
 export class HeaderComponent {
 
+    recipes = [];
+
     constructor(private dataStorageService: DataStorageService) { }
     onSaveData() {
 
@@ -17,5 +19,9 @@ export class HeaderComponent {
             (response: Response) => console.log(response),
             (error) => console.log(error)
         );
+    }
+
+    onFetchData() {
+        this.dataStorageService.retrieveRecipes();
     }
 }

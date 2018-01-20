@@ -7,6 +7,7 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 // create routes for main components (recipes and shopping list)
 const appRoutes: Routes = [
@@ -16,9 +17,9 @@ const appRoutes: Routes = [
         component: RecipesComponent,
         children: [
             { path: '', component: RecipeStartComponent },
-            { path: 'new', component: RecipeEditComponent },
+            { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
             { path: ':id', component: RecipeDetailComponent },
-            { path: ':id/edit', component: RecipeEditComponent }
+            { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] }
         ]
     },
     {

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
+import { Recipe } from '../recipes/recipe.model';
+import * as firebase from 'firebase';
 
 @Component({
     selector: 'app-header',
@@ -23,6 +25,7 @@ export class HeaderComponent {
     }
 
     onFetchData() {
+
         this.dataStorageService.retrieveRecipes();
     }
 

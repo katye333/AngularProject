@@ -29,13 +29,13 @@
                 <li>
                     <a style="cursor: pointer;"
                        (click)="onLogout()"
-                       *ngIf="authService.isAuthenticated()">Logout</a>
+                       *ngIf="!(!authService.isAuthenticated())">Logout</a>
                 </li>
 
                 <!-- Add dropdown directive to this li tag -->
                 <li class="dropdown"
                     appDropdown
-                    *ngIf="authService.isAuthenticated()">
+                    *ngIf="!(!authService.isAuthenticated())">
                     <a class="dropdown-toggle"
                        role="button">Manage
                         <span class="caret"></span>

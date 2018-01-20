@@ -8,6 +8,7 @@
                        name="email"
                        id="email"
                        class="form-control"
+                       required
                        ngModel>
             </div>
 
@@ -17,11 +18,14 @@
                        name="password"
                        id="password"
                        class="form-control"
+                       required
+                       minlength="6"
                        ngModel>
             </div>
 
             <button class="btn btn-primary"
-                    type="submit">Submit</button>
+                    type="submit"
+                    [disabled]="!form.valid">Submit</button>
         </form>
     </div>
 </div>

@@ -60,12 +60,16 @@ export class RecipeEditComponent implements OnInit {
         this.router.navigate(['../'], { relativeTo: this.route });
     }
 
+    onDeleteIngredient(index: number) {
+        (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+    }
+
     // initialize the form with data depending on if in editMode or not
     private initForm() {
         let recipeName = '';
         let recipeImagePath = '';
         let recipeDescription = '';
-        let recipeIngredients = new FormArray([]);
+        const recipeIngredients = new FormArray([]);
 
         // if in editMode, populate the above variables with data from the recipe service
         if (this.editMode) {

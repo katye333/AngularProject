@@ -42,7 +42,7 @@ export class RecipeEditComponent implements OnInit {
 
             // does the recipe have ingredients defined
             if (recipe['ingredients']) {
-                for (let ingredient of recipe.ingredients) {
+                for (const ingredient of recipe.ingredients) {
                     recipeIngredients.push(
                         new FormGroup({
                             'name': new FormControl(ingredient.name),
@@ -64,5 +64,15 @@ export class RecipeEditComponent implements OnInit {
 
     onSubmit() {
         console.log(this.recipeForm);
+    }
+
+    // add a new control to the array of ingredient controls
+    onAddIngredient() {
+        (<FormArray>this.recipeForm.get('ingredients')).push(
+            new FormGroup({
+                'name': new FormControl(),
+                'amount': new FormControl()
+            })
+        );
     }
 }

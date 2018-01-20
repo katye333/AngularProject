@@ -5,6 +5,8 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 // create routes for main components (recipes and shopping list)
 const appRoutes: Routes = [
@@ -22,6 +24,14 @@ const appRoutes: Routes = [
     {
         path: 'shopping-list',
         component: ShoppingListComponent
+    },
+    {
+        path: 'signup',
+        component: SignupComponent
+    },
+    {
+        path: 'signin',
+        component: SigninComponent
     }
 ];
 

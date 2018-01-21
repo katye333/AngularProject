@@ -11,8 +11,8 @@ import { AuthService } from '../auth/auth.service';
 export class HeaderComponent {
 
     recipes = [];
-
     constructor(private dataStorageService: DataStorageService, private authService: AuthService) { }
+
     onSaveData() {
 
         // on click of "Save Data" dropdown element 
@@ -24,6 +24,10 @@ export class HeaderComponent {
 
     onFetchData() {
         this.dataStorageService.retrieveRecipes();
+    }
+
+    getTokenInput() {
+        return this.authService.isAuthenticated();
     }
 
     onLogout() {

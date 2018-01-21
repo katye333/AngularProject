@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import { AppRoutingModule } from './app-routing.module';
 
 @Component({
     selector: 'app-root',

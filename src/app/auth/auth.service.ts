@@ -10,7 +10,7 @@ export class AuthService {
     signupUser(email: string, password: string) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(response => {
-                this.router.navigate(['/']);
+                this.router.navigate(['/signin']);
             })
             .catch(error => console.log(error));
     }
@@ -39,7 +39,10 @@ export class AuthService {
     }
 
     logout() {
-        firebase.auth().signOut();
+        firebase.auth().signOut()
+            .then(response => {
+                this.router.navigate(['/signin']);
+            });
         this.token = null;
     }
 }

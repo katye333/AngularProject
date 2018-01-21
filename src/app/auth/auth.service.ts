@@ -9,6 +9,9 @@ export class AuthService {
 
     signupUser(email: string, password: string) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(response => {
+                this.router.navigate(['/']);
+            })
             .catch(error => console.log(error));
     }
 
@@ -30,7 +33,8 @@ export class AuthService {
         return this.token;
     }
 
-    isAuthenticated() {
+    isAuthenticated(): boolean {
+        // const tokenValid = this.token != null;
         return this.token != null;
     }
 

@@ -1,58 +1,52 @@
-<div class="row">
-    <div class="col-xs-12">
+<!-- Add template form method on handling form submission -->
+<!-- Create a local reference on the form element to get access to the form created by Angular -->
+<!-- Pass onSubmit() the local form reference -->
+<form (ngSubmit)="onSubmit(listForm)"
+    #listForm="ngForm">
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-9">
+                <label for="name">Name</label>
 
-        <!-- Add template form method on handling form submission -->
-        <!-- Create a local reference on the form element to get access to the form created by Angular -->
-        <!-- Pass onSubmit() the local form reference -->
-        <form (ngSubmit)="onSubmit(listForm)"
-              #listForm="ngForm">
-            <div class="row">
-                <div class="col-sm-5 form-group">
-                    <label for="name">Name</label>
-
-                    <!-- Create template-driven form for shopping list -->
-                    <!-- Add validation to ensure these fields are not empty (both) -->
-                    <input type="text"
-                           id="name"
-                           class="form-control"
-                           name="name"
-                           ngModel
-                           required />
-                </div>
-
-                <!-- No validation needed on this element to ensure only numbers can be entered
-                     because html5 type attribute is set to be numbers 
-                     unfortunately it doesn't false if zero or less is entered -->
-
-                <!-- add pattern binding for validation to make sure only numbers greater than zero can be inputted  -->
-                <div class="col-sm-2 form-group">
-                    <label for="amount">Amount</label>
-                    <input type="number"
-                           id="amount"
-                           class="form-control"
-                           name="amount"
-                           ngModel
-                           required
-                           pattern="^[1-9]+[0-9]*$" />
-                </div>
+                <!-- Create template-driven form for shopping list -->
+                <!-- Add validation to ensure these fields are not empty (both) -->
+                <input type="text"
+                    id="name"
+                    class="form-control"
+                    name="name"
+                    ngModel
+                    required />
             </div>
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-success"
-                            type="submit"
-                            [disabled]="!listForm.valid">{{ editMode ? 'Update' : 'Add' }}</button>
+            <!-- No validation needed on this element to ensure only numbers can be entered
+	                     because html5 type attribute is set to be numbers
+	                     unfortunately it doesn't false if zero or less is entered -->
 
-                    <!-- Only show the delete button if an item is selected  -->
-                    <button *ngIf="this.editMode"
-                            class="btn btn-danger"
-                            type="button"
-                            (click)="onDelete()">Delete Item</button>
-                    <button class="btn btn-primary"
-                            type="button"
-                            (click)="onClear()">Clear</button>
-                </div>
+            <!-- add pattern binding for validation to make sure only numbers greater than zero can be inputted  -->
+            <div class="col-3">
+                <label for="amount">Amount</label>
+                <input type="number"
+                    id="amount"
+                    class="form-control"
+                    name="amount"
+                    ngModel
+                    required
+                    pattern="^[1-9]+[0-9]*$" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <button class="btn btn-success"
+            type="submit"
+            [disabled]="!listForm.valid">{{ editMode ? 'Update' : 'Add' }}</button>
+
+        <!-- Only show the delete button if an item is selected  -->
+        <button *ngIf="this.editMode"
+            class="btn btn-danger"
+            type="button"
+            (click)="onDelete()">Delete Item</button>
+        <button class="btn btn-primary"
+            type="button"
+            (click)="onClear()">Clear</button>
+    </div>
+</form>

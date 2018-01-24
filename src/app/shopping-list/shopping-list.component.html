@@ -1,14 +1,13 @@
 <div class="row">
-    <div class="col-xs-10">
+    <div class="col-md-8 offset-md-2">
         <app-shopping-edit></app-shopping-edit>
-
         <hr />
         <ul class="list-group">
             <!-- Each anchor tag is a single item on our shopping list -->
             <a class="list-group-item"
-               style="cursor: pointer;"
-               *ngFor="let ingredient of ingredients; let i = index"
-               (click)="onEditItem(i)">
+                style="cursor: pointer;"
+                *ngFor="let ingredient of ingredients; let i = index"
+                (click)="onEditItem(i)">
 
                 <!-- String interpolation used to output the name (string) and amount (number) -->
                 {{ ingredient.name }} ({{ ingredient.amount }})

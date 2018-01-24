@@ -1,57 +1,65 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a routerLink="/"
-               class="navbar-brand">Recipe Book</a>
-        </div>
+<nav class="navbar navbar-light bg-light navbar-expand-lg">
+    <a routerLink="/"
+        class="navbar-brand">Recipe Book</a>
+    <button class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
 
-        <div class="navbar-default">
-            <ul class="nav navbar-nav">
-                <!-- Clicking a link below will trigger the onSelect() function -->
-                <li role="presentation"
-                    routerLinkActive="active">
-                    <a routerLink="/recipes">Recipes</a>
-                </li>
-                <li role="presentation"
-                    routerLinkActive="active">
-                    <a routerLink="/shopping-list">Shopping List</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <ng-template [ngIf]="!getTokenInput()">
-                    <li>
-                        <a routerLink="/signup">Register</a>
+    <div class="collapse navbar-collapse d-flex justify-content-between"
+        id="navbarNav">
+        <ul class="navbar-nav">
+            <!-- Clicking a link below will trigger the onSelect() function -->
+            <li class="nav-item"
+                routerLinkActive="active">
+                <a class="nav-link"
+                    routerLink="/recipes">Recipes</a>
+            </li>
+            <li class="nav-item"
+                routerLinkActive="active">
+                <a class="nav-link"
+                    routerLink="/shopping-list">Shopping List</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <!-- Add dropdown directive to this li tag -->
+            <li class="nav-item dropdown"
+                appDropdown
+                *ngIf="getTokenInput()">
+                <a class="nav-link dropdown-toggle"
+                    role="button">Manage
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                        <a style="cursor: pointer"
+                            (click)="onSaveData()">Save Data</a>
                     </li>
-                    <li>
-                        <a routerLink="/signin">Login</a>
+                    <li class="dropdown-item">
+                        <a style="cursor: pointer"
+                            (click)="onFetchData()">Fetch Data</a>
                     </li>
-                </ng-template>
-                <li>
-                    <a style="cursor: pointer;"
-                       (click)="onLogout()"
-                       *ngIf="getTokenInput()">Logout</a>
-                </li>
+                </ul>
+            </li>
 
-                <!-- Add dropdown directive to this li tag -->
-                <li class="dropdown"
-                    appDropdown
-                    *ngIf="getTokenInput()">
-                    <a class="dropdown-toggle"
-                       role="button">Manage
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a style="cursor: pointer"
-                               (click)="onSaveData()">Save Data</a>
-                        </li>
-                        <li>
-                            <a style="cursor: pointer"
-                               (click)="onFetchData()">Fetch Data</a>
-                        </li>
-                    </ul>
+            <ng-template [ngIf]="!getTokenInput()">
+                <li class="nav-item">
+                    <a class="nav-link"
+                        routerLink="/signup">Register</a>
                 </li>
-            </ul>
-        </div>
+                <li class="nav-item">
+                    <a class="nav-link"
+                        routerLink="/signin">Login</a>
+                </li>
+            </ng-template>
+
+            <li class="nav-item">
+                <a style="cursor: pointer;"
+                    (click)="onLogout()"
+                    class="nav-link"
+                    *ngIf="getTokenInput()">Logout</a>
+        </ul>
     </div>
 </nav>

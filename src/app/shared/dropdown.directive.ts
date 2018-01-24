@@ -14,7 +14,7 @@ export class DropdownDirective {
     // listen to a click event
     // execute toggle open method to switch value of this.isOpen
     @HostListener('click') toggleOpen() {
-        let part = this.el.nativeElement.querySelector('.dropdown-menu');
+        const part = this.el.nativeElement.querySelector('.dropdown-menu');
         this.isOpen ? this.renderer.removeClass(part, 'show') : this.renderer.addClass(part, 'show');
         this.isOpen = !this.isOpen;
     }

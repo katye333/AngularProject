@@ -82,7 +82,7 @@
 
                             <div class="form-row"
                                 style="margin-bottom: 5px;"
-                                *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index;"
+                                *ngFor="let ingredientCtrl of ingredientData.controls; let i = index;"
                                 [formGroupName]="i">
                                 <div class="col-8">
                                     <input type="text"

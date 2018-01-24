@@ -4,6 +4,7 @@
 it will execute the onNavigate() function call -->
 
 <!-- $event refers to the event data of the selected feature -->
+<!-- header is only used in the AppComponent so we could add it to the coreModule  -->
 <app-header (featureSelected)="onNavigate($event)"></app-header>
 
 <div class="container">

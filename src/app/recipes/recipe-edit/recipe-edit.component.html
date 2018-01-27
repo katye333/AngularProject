@@ -1,124 +1,135 @@
-<!-- formGroup = the name of our form in typescript code -->
 <form [formGroup]="recipeForm"
-    (ngSubmit)="onSubmit()">
-    <div class="form-group row">
-        <div class="col-10">
-            <button class="btn btn-success"
-                type="submit"
-                [disabled]="!recipeForm.valid">Save</button>
-            <button class="btn btn-danger"
-                type="button"
-                (click)="onCancel()">Cancel</button>
-        </div>
-    </div>
+      (ngSubmit)="onSubmit()"
+      style="border-left: 2px solid #007bff; border-right: 2px solid #007bff;">
 
-    <div class="form-group">
-        <label for="name"
-            class="col-6 col-form-label">Name</label>
-        <div class="col-10">
-            <!-- formControlName (property binding but equal to string so no brackets)
-                        this is whatever name we assigned to it in the this.recipeForm = new FormGroup({ ... }) -->
-            <input type="text"
-                id="name"
-                class="form-control"
-                formControlName="name">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="imagePath"
-            class="col-6 col-form-label">Image URL</label>
-
-        <div class="col-10">
-            <!-- formControlName (property binding but equal to string so no brackets)
-                        this is whatever name we assigned to it in the this.recipeForm = new FormGroup({ ... }) -->
-            <input type="text"
-                id="imagePath"
-                class="form-control"
-                formControlName="imagePath"
-                #imagePath>
-        </div>
-        <!-- Add local reference so we can see the image preview -->
-    </div>
-    <div class="form-group">
-        <div class="col-10">
-            <!-- Use property binding to get the image local reference  -->
-            <img [src]="imagePath.value"
-                class="img-fluid">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="description"
-            class="col-6 col-form-label">Description</label>
-        <div class="col-10">
-            <!-- formControlName (property binding but equal to string so no brackets)
-                        this is whatever name we assigned to it in the this.recipeForm = new FormGroup({ ... }) -->
-            <textarea type="text"
-                id="description"
-                class="form-control"
-                rows="6"
-                formControlName="description"></textarea>
-        </div>
-    </div>
-
-    <div class="accordion">
-        <div class="card">
-            <div class="card-header"
-                id="ingredientsHeader">
-                <h5 class="mb-0">
-			        <button class="btn">
-			          Ingredients
-			        </button>
-				</h5>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group"
+                 style="padding: 20px 0px; background-color: #007bff;">
+                <div class="col-12">
+                    <h2 style="color: white;">Update
+                        <small class="text-muted"
+                               style="color: #d7dbde !important;">{{ this.recipeForm.controls["name"].value }}</small>
+                    </h2>
+                </div>
             </div>
-            <div id="collapseThree"
-                class="collapse"
-                aria-labelledby="ingredientsHeader"
-                data-parent="#accordion">
-                <div class="card-body">
-                    <div class="form-group">
-                        <div class="col-10"
-                            formArrayName="ingredients">
+        </div>
+    </div>
 
-                            <div class="form-row"
-                                style="margin-bottom: 5px;"
-                                *ngFor="let ingredientCtrl of ingredientData.controls; let i = index;"
-                                [formGroupName]="i">
-                                <div class="col-8">
-                                    <input type="text"
-                                        class="form-control"
-                                        formControlName="name">
-                                </div>
-                                <div class="col-2"
-                                    style="padding-left: 0px;">
-                                    <input type="number"
-                                        class="form-control"
-                                        formControlName="amount">
-                                </div>
-                                <div class="col-2"
-                                    style="padding-left: 0px;">
+    <div class="row">
+        <div class="col-6">
+
+            <div class="form-group">
+                <label for="name"
+                       class="col-3 col-form-label">Name</label>
+                <div class="col-9">
+                    <!-- formControlName (property binding but equal to string so no brackets)
+                                    this is whatever name we assigned to it in the this.recipeForm = new FormGroup({ ... }) -->
+                    <input type="text"
+                           id="name"
+                           class="form-control"
+                           formControlName="name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="imagePath"
+                       class="col-3 col-form-label">Image URL</label>
+
+                <div class="col-9">
+                    <!-- formControlName (property binding but equal to string so no brackets)
+                                    this is whatever name we assigned to it in the this.recipeForm = new FormGroup({ ... }) -->
+                    <input type="text"
+                           id="imagePath"
+                           class="form-control"
+                           formControlName="imagePath"
+                           #imagePath>
+                </div>
+                <!-- Add local reference so we can see the image preview -->
+            </div>
+
+            <div class="form-group">
+                <div class="col-12 offset-md-3">
+                    <!-- Use property binding to get the image local reference  -->
+                    <img [src]="imagePath.value"
+                         class="img-thumbnail"
+                         style="height: 120px; width: 170px;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description"
+                       class="col-3 col-form-label">Description</label>
+                <div class="col-9">
+                    <!-- formControlName (property binding but equal to string so no brackets)
+                                    this is whatever name we assigned to it in the this.recipeForm = new FormGroup({ ... }) -->
+                    <textarea type="text"
+                              id="description"
+                              class="form-control"
+                              rows="4"
+                              formControlName="description"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="description"
+                       class="col-3 col-form-label">Ingredients</label>
+                <div class="col-9">
+                    <div formArrayName="ingredients">
+
+                        <div *ngFor="let ingredientCtrl of ingredientData.controls; let i = index;"
+                             [formGroupName]="i"
+                             style="margin-bottom: 5px;">
+
+                            <div class="input-group">
+                                <input type="text"
+                                       class="form-control col-8"
+                                       formControlName="name"
+                                       placeholder="Name">
+                                <input type="number"
+                                       class="form-control col-3"
+                                       formControlName="amount"
+                                       placeholder="Amount">
+
+                                <div class="input-group-append"
+                                     style="padding-left: 0px;">
                                     <button class="btn btn-danger"
-                                        type="button"
-                                        style="padding-left: 15px; padding-right: 15px;"
-                                        (click)="onDeleteIngredient(i)">X</button>
-                                </div>
-                            </div>
-
-                            <hr/>
-                            <div class="form-group row">
-                                <div class="col-10">
-
-                                    <!-- Add a new ingredient control to the ingredient array -->
-                                    <button class="btn btn-success"
-                                        type="button"
-                                        (click)="onAddIngredient()">Add Ingredient</button>
+                                            type="button"
+                                            style="padding-left: 15px; padding-right: 15px;"
+                                            (click)="onDeleteIngredient(i)">X</button>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
+                    <div class="form-group row">
+                        <div class="col-10">
+
+                            <!-- Add a new ingredient control to the ingredient array -->
+                            <button class="btn btn-outline-primary"
+                                    type="button"
+                                    (click)="onAddIngredient()">Add Ingredient</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
+            <div class="form-group">
+                <div class="col-12">
+                    <button class="btn btn-success"
+                            type="submit"
+                            [disabled]="!recipeForm.valid">Save</button>
+                    <button class="btn btn-danger"
+                            type="button"
+                            (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </form>

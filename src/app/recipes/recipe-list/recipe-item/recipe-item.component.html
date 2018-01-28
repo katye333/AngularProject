@@ -4,7 +4,8 @@
    class="list-group-item d-flex-inline justify-content-between align-items-center">
 
 	<h4>{{ recipe.name }}</h4>
-	<p class="list-group-item-text">{{ recipe.description }}</p>
+	<p class="list-group-item-text"
+	   style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ recipe.description }}</p>
 
 	<img src="{{ recipe.imagePath }}"
 	     alt="{{ recipe.name }}"

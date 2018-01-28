@@ -1,12 +1,15 @@
-<div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-4 offset-md-1 offset-md-4">
+<div class="grid">
+    <div class="col-4"
+         data-push-left="off-4"
+         data-push-right="off-4">
         <!-- Form contains the panel elements to use default styling -->
         <form (ngSubmit)="onSignin(form)"
-              #form="ngForm">
+              #form="ngForm"
+              class="form-horizontal">
 
             <div class="card text-left">
                 <div class="card-header bg-primary text-white">
-                    <h3 class="my-0">Login</h3>
+                    <h3 class="my-0">Login Form</h3>
                 </div>
 
                 <div class="card-body text-left">

@@ -1,6 +1,14 @@
 <nav class="navbar navbar-light bg-light navbar-expand-md">
-    <a routerLink="/"
+    <a *ngIf="!isLoggedIn; else loggedIn"
+       routerLink="/"
        class="navbar-brand">Recipe Book</a>
+
+    <ng-template #loggedIn>
+        <a routerLink="/recipes"
+           class="navbar-brand">Recipe Book</a>
+    </ng-template>
+
+
     <button class="navbar-toggler"
             type="button"
             data-toggle="collapse"

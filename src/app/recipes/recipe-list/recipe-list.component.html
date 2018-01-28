@@ -3,27 +3,25 @@
     <span class="align-middle md-24"
           style="margin-left: 5px;">List of Recipes</span>
 </div> -->
-<div class="row">
-    <div class="col-12">
-        <button class="btn btn-success"
-                (click)="onNewRecipe()">New Recipe</button>
-    </div>
+<div class="col">
+    <button class="btn btn-success"
+            (click)="onNewRecipe()">New Recipe</button>
+    <hr />
 </div>
-<hr />
-<div class="row">
-    <div class="col-12">
-        <!-- [recipe] in the square brackets refers to the
+
+<div class="col">
+
+    <!-- [recipe] in the square brackets refers to the
              @Input() recipe: Recipe (recipe-item.component.ts) -->
 
-        <!-- The event listening for the child to be selected already contains
+    <!-- The event listening for the child to be selected already contains
              all the information about that element from this loop -->
 
-        <!-- A second event needs to be emitted from this component to get to
+    <!-- A second event needs to be emitted from this component to get to
              the parent containing the recipe-details component  -->
 
-        <!-- The parameter being passed to onRecipeSelected() lets us know which recipe was chosen -->
-        <app-recipe-item *ngFor="let recipeEl of recipes; let i = index"
-                         [recipe]="recipeEl"
-                         [index]="i"></app-recipe-item>
-    </div>
+    <!-- The parameter being passed to onRecipeSelected() lets us know which recipe was chosen -->
+    <app-recipe-item *ngFor="let recipeEl of recipes; let i = index"
+                     [recipe]="recipeEl"
+                     [index]="i"></app-recipe-item>
 </div>

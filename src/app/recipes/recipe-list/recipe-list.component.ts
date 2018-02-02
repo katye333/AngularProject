@@ -17,9 +17,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     // shorthand: assign a property with the same name and angular handles it
     constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute) { }
     ngOnInit() {
+
         this.subscription = this.recipeService.recipeChanged.subscribe(
             (recipes: Recipe[]) => {
-                this.recipes = recipes;
+                this.recipes = recipes
             }
         );
         this.recipes = this.recipeService.getRecipes(); // Get a copy of this array from our service

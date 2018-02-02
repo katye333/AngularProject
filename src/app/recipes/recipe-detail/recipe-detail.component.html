@@ -1,51 +1,45 @@
-<div class="card grid">
-    <div class="col grid-column"
-         style="margin: inherit; margin-right: 15px;">
-        <div class="col-12">
-            <img [src]="recipe.imagePath"
-                 alt="{{ recipe.name }}"
-                 class="rounded img-thumbnail">
-        </div>
-        <div class="col-8">
-            <h4 style="margin-left: 15px;">{{ recipe.name }}
-                <small class="text-muted">{{ recipe.description }}</small>
-            </h4>
-
-        </div>
-    </div>
-    <div class="col grid-column"
-         style="margin: inherit;">
-        <div class="col-12">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"
-                    *ngFor="let ingredient of recipe.ingredients">
-                    {{ ingredient.name }} - {{ ingredient.amount }}
-                </li>
-            </ul>
-        </div>
-        <div class="col-12">
-            <div class="btn-group"
-                 appDropdown>
-
-                <button class="btn btn-primary dropdown-toggle">
-                    Manage Recipe
-                    <span class="caret"></span>
-                </button>
-
-                <div class="dropdown-menu">
-                    <a class="dropdown-item"
-                       (click)="onAddToShoppingList()"
-                       style="cursor: pointer">Add Ingredients to List</a>
-
-                    <a class="dropdown-item"
-                       (click)="onEditRecipe()"
-                       style="cursor: pointer">Edit Recipe</a>
-
-                    <a class="dropdown-item"
-                       (click)="onDeleteRecipe()"
-                       style="cursor: pointer">Delete Recipe</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="card grid-2_sm-1">
+	<div class="col"
+	     style="margin: inherit; margin-right: 15px;">
+		<img [src]="recipe.imagePath"
+		     alt="{{ recipe.name }}"
+		     class="rounded img-thumbnail">
+		
+		<h3 style="margin-left: 15px; margin-top: 15px;">{{ recipe.name }}
+			<p class="text-muted" style="font-size: 1rem; font-weight: 300;">{{ recipe.description }}</p>
+		</h3>
+	</div>
+	
+	<div class="col"
+	     style="margin: inherit;">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item"
+			    *ngFor="let ingredient of recipe.ingredients">
+				{{ ingredient.name }} - {{ ingredient.amount }}
+			</li>
+		</ul>
+		<div class="btn-group"
+		     appDropdown
+		     style="margin-top: 15px;">
+			
+			<button class="btn btn-primary dropdown-toggle">
+				Manage Recipe
+				<span class="caret"></span>
+			</button>
+			
+			<div class="dropdown-menu">
+				<a class="dropdown-item"
+				   (click)="onAddToShoppingList()"
+				   style="cursor: pointer">Add Ingredients to List</a>
+				
+				<a class="dropdown-item"
+				   (click)="onEditRecipe()"
+				   style="cursor: pointer">Edit Recipe</a>
+				
+				<a class="dropdown-item"
+				   (click)="onDeleteRecipe()"
+				   style="cursor: pointer">Delete Recipe</a>
+			</div>
+		</div>
+	</div>
 </div>

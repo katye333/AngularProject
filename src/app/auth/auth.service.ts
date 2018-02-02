@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     getToken() {
-        // asycn to get token from local storage and check if still valid
+        // asynchronous to get token from local storage and check if still valid
         firebase.auth().currentUser.getToken()
             .then((token: string) => this.token = token);
 

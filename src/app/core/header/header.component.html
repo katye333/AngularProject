@@ -1,12 +1,10 @@
 <nav class="navbar navbar-light bg-light navbar-expand-md">
-    <a *ngIf="!isLoggedIn; else loggedIn"
+    <a *ngIf="!getTokenInput()"
        routerLink="/"
        class="navbar-brand">Recipe Book</a>
 
-    <ng-template #loggedIn>
-        <a routerLink="/recipes"
-           class="navbar-brand">Recipe Book</a>
-    </ng-template>
+    <a *ngIf="getTokenInput()" routerLink="/recipes"
+       class="navbar-brand">Recipe Book</a>
 
 
     <button class="navbar-toggler"

@@ -1,9 +1,8 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-// import { RecipeService } from '../recipe.service';
-import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
+import { Recipe } from '../recipe.model';
 
 @Component({
     selector: 'app-recipe-edit',
@@ -69,6 +68,11 @@ export class RecipeEditComponent implements OnInit {
         (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
     }
 
+    // navigate to the relative link new with information about our current route
+    onNewRecipe() {
+        this.router.navigate(['new'], {relativeTo: this.route});
+    }
+
     // initialize the form with data depending on if in editMode or not
     private initForm() {
         let recipeName = '';
@@ -111,5 +115,6 @@ export class RecipeEditComponent implements OnInit {
             'ingredients': recipeIngredients
         });
 
+        console.log(this.recipeForm);
     }
 }

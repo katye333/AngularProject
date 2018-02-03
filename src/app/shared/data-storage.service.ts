@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
@@ -14,16 +14,27 @@ export class DataStorageService {
 
     // must return the put request because it is an Observable
     storeRecipes() {
-        const token = this.authService.getToken();
+        // const headers = new HttpHeaders().set('Authorization', 'Bearer afsfheuthuieg');
 
-        return this.httpClient.put('https://ng-recipe-book-d219c.firebaseio.com/data.json?auth=' + token, this.recipeService.getRecipes());
+        // return this.httpClient.put('https://ng-recipe-book-d219c.firebaseio.com/data.json',
+        //     this.recipeService.getRecipes(), {
+        //         observe: 'body',
+        //         params: new HttpParams().set('auth', token)
+        //     });
+        const req = new HttpRequest('PUT', 'https://ng-recipe-book-d219c.firebaseio.com/data.json',
+            this.recipeService.getRecipes(), {
+                // reportProgress: true
+            });
+        return this.httpClient.request(req);
     }
 
     retrieveRecipes() {
         const token = this.authService.getToken();
 
-        this.httpClient.get<Recipe[]>('https://ng-recipe-book-d219c.firebaseio.com/data.json?auth=' + token)
-            .map(
+        this.httpClient.get<Recipe[]>('https://ng-recipe-book-d219c.firebaseio.com/data.json', {
+            observe: 'body',
+            responseType: 'json'
+        }).map(
             (recipes) => {
                 for (const recipe of recipes) {
                     if (!recipe['ingredients']) {

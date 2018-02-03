@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import {observable} from 'rxjs/symbol/observable';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
 
     signinUser(email: string, password: string) {
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(response => {
+            .then(() => {
                 this.router.navigate(['/recipes']);
                 firebase.auth().currentUser.getToken()
                     .then((token: string) => this.token = token);
@@ -44,5 +45,6 @@ export class AuthService {
                 this.router.navigate(['/']);
             });
         this.token = null;
+
     }
 }

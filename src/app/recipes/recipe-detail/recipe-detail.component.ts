@@ -28,7 +28,6 @@ export class RecipeDetailComponent implements OnInit {
             }
         );
     }
-
     // we need to either:
     //   * get access to the shopping list service or 
     //   * get access to the recipe service then the recipe service accesses the shopping list service

@@ -1,12 +1,6 @@
-import { Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { Subject } from 'rxjs/Subject';
-import { Store } from '@ngrx/store';
-import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
-
-// inject a service into a service
-@Injectable()
 
 // the recipes are currently managed in the recipe-list component
 // and should be moved to here to be taken care of
@@ -42,7 +36,7 @@ export class RecipeService {
             ])
     ];
 
-    constructor(private store: Store<{shoppingList: {ingredients: Ingredient[]}}>) { }
+    constructor() { }
 
     setRecipes(recipes: Recipe[]) {
         this.recipes = recipes;
@@ -62,10 +56,6 @@ export class RecipeService {
     // get a single recipe by id 
     getRecipe(index: number) {
         return this.recipes.slice()[index];
-    }
-
-    addIngredientsToShoppingList(ingredients: Ingredient[]) {
-        this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
     }
 
     // push new recipe onto recipes array defined at the top

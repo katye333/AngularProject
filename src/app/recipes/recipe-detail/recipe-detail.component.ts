@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../../shared/ingredient.model';
+import { Store } from '@ngrx/store';
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
+import * as fromShoppingList from '../../shopping-list/store/shopping-list.reducers';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -17,7 +20,7 @@ export class RecipeDetailComponent implements OnInit {
     id: number;
 
     // use the route to get the recipe id
-    constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router, private store: Store<fromShoppingList.AppState>) { }
     ngOnInit() {
 
         // this gets the new id any time the route changes rather than only on init
@@ -32,7 +35,7 @@ export class RecipeDetailComponent implements OnInit {
     //   * get access to the shopping list service or 
     //   * get access to the recipe service then the recipe service accesses the shopping list service
     onAddToShoppingList() {
-        this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+        this.store.dispatch(new ShoppingListActions.AddIngredients(this.recipe.ingredients));
     }
 
     // navigate to the relative link edit with information about our current route 

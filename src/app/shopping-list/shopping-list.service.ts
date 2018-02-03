@@ -7,10 +7,7 @@ export class ShoppingListService {
     startedEditing = new Subject<number>(); // listenes for the shopping list to get edited
 
     // Ingredient Model
-    private ingredients: Ingredient[] = [
-        new Ingredient('Apples', 5),
-        new Ingredient('Tomatoes', 10)
-    ];
+    private ingredients: Ingredient[] = [];
 
     // this method only returns a copy of our array
     // NOTE: This is the reason why our Add Ingredient button does not work!
@@ -25,8 +22,8 @@ export class ShoppingListService {
     }
 
     // access my ingredients and push a new one on
-    addIngredient(ingredient: Ingredient) {
-        this.ingredients.push(ingredient);
+    addIngredient(ingredient: Ingredient[]) {
+        this.ingredients.push(...ingredient);
 
         // to fix problem caused by the copy of our ingredient array
         this.ingredientsChanged.next(this.ingredients.slice());
